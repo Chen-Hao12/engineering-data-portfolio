@@ -1,0 +1,62 @@
+{
+  "notice": "Engineering simulation: deterministic synthetic data; metrics describe held-out evaluation only.",
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1"
+  },
+  "case_1": {
+    "all_records": 4320,
+    "valid_feature_records": 4152,
+    "train_records": 3432,
+    "test_records": 720,
+    "split": "chronological: final 30 days as test",
+    "seed": 20261008,
+    "ridge_alpha": 1.0,
+    "protocol": "rolling one-hour-ahead; previous observed loads and a supplied simulated weather covariate",
+    "model": {
+      "MAE_kW": 30.105788529277426,
+      "RMSE_kW": 37.400517647449696,
+      "MAPE_percent": 3.078729834647692
+    },
+    "lag24_baseline": {
+      "MAE_kW": 79.32468991221491,
+      "RMSE_kW": 102.47904471263656,
+      "MAPE_percent": 8.212428052554882
+    },
+    "features": [
+      "hour_sin",
+      "hour_cos",
+      "hour_sin_2",
+      "hour_cos_2",
+      "weekend",
+      "cooling",
+      "heating",
+      "lag_24",
+      "lag_168"
+    ],
+    "train_start": "2026-01-08 00:00:00",
+    "train_end": "2026-05-30 23:00:00",
+    "test_start": "2026-05-31 00:00:00",
+    "test_end": "2026-06-29 23:00:00",
+    "MAE_improvement_percent": 62.04739210125605
+  },
+  "case_2": {
+    "all_records": 3000,
+    "train_records": 2000,
+    "test_records": 1000,
+    "test_anomalies": 120,
+    "seed": 20261009,
+    "threshold_quantile": 0.995,
+    "threshold": 12.704527244658063,
+    "precision": 0.9439252336448598,
+    "recall": 0.8416666666666667,
+    "F1": 0.8898678414096917,
+    "false_positive_rate": 0.006818181818181818,
+    "TP": 101,
+    "FP": 6,
+    "FN": 19,
+    "TN": 874,
+    "protocol": "normal-only initial calibration, subsequent held-out 1000 records; labels only used for evaluation"
+  }
+}
